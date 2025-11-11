@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comfort Page - You're Not Alone 💙</title>
+    <link rel="stylesheet" href="css/sad.css">
+</head>
+<body>
+    <!-- Gentle Rain Drops -->
+    <div class="rain-drops" id="rainContainer"></div>
+    
+    <div class="container">
+        <h1 class="main-title">It's Okay to Feel Sad 💙</h1>
+        <p class="subtitle">You're not alone, and this feeling will pass</p>
+        
+        <div class="buttons-container">
+            <button class="btn comfort-btn" id="comfortBtn">🕊️ Get Comfort Quote</button>
+            <button class="btn hug-btn" id="hugBtn">🤗 Virtual Hug</button>
+            <button class="btn support-btn" id="supportBtn">💝 Support Tools</button>
+            <button class="btn hope-btn" id="hopeBtn">🌅 Find Hope</button>
+        </div>
+
+        <div class="quote-container" id="quoteContainer">
+            <div class="quote-text" id="quoteText">
+                "Sometimes you need to sit lonely on the floor in a quiet room in order to hear your own voice and not let it get drowned out by others."
+            </div>
+            <div class="quote-author" id="quoteAuthor">- Charlotte Eriksson</div>
+        </div>
+
+        <!-- Virtual Hug Zone -->
+        <div class="hug-zone" id="hugZone">
+            <div class="hug-animation">
+                <div class="hug-circle">
+                    <div class="hug-text">Sending you warmth and comfort</div>
+                    <div class="hug-counter" id="hugCounter">Hugs received: 0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support Tools -->
+        <div class="support-tools" id="supportTools">
+            <div class="tools-title">Gentle Self-Care Tools</div>
+            <div class="tools-grid">
+                <div class="tool-card" id="breatheTool">
+                    <div class="tool-icon">🌬️</div>
+                    <div class="tool-text">Gentle Breathing</div>
+                </div>
+                <div class="tool-card" id="journalTool">
+                    <div class="tool-icon">📝</div>
+                    <div class="tool-text">Express Feelings</div>
+                </div>
+                <div class="tool-card" id="musicTool">
+                    <div class="tool-icon">🎵</div>
+                    <div class="tool-text">Calming Sounds</div>
+                </div>
+                <div class="tool-card" id="natureTool">
+                    <div class="tool-icon">🌿</div>
+                    <div class="tool-text">Nature Visualization</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hope Activities -->
+        <div class="hope-activities" id="hopeActivities">
+            <div class="hope-title">Small Steps to Light</div>
+            <div class="hope-steps">
+                <div class="hope-step" data-step="support">
+                    <span class="step-icon">🕊️</span>
+                    <span class="step-text">I'm here for you</span>
+                </div>
+                <div class="hope-step" data-step="tomorrow">
+                    <span class="step-icon">🌅</span>
+                    <span class="step-text">Tomorrow is a new day</span>
+                </div>
+                <div class="hope-step" data-step="strength">
+                    <span class="step-icon">💪</span>
+                    <span class="step-text">You're stronger than you know</span>
+                </div>
+                <div class="hope-step" data-step="growth">
+                    <span class="step-icon">🌱</span>
+                    <span class="step-text">Growth comes from challenges</span>
+                </div>
+                <div class="hope-step" data-step="moments">
+                    <span class="step-icon">✨</span>
+                    <span class="step-text">Beautiful moments await</span>
+                </div>
+            </div>
+            <div class="hope-message" id="hopeMessage"></div>
+        </div>
+
+        <!-- Breathing Exercise -->
+        <div class="breathing-exercise" id="breathingExercise">
+            <div class="breathing-title">Gentle Breathing Exercise</div>
+            <div class="breathing-circle" id="breathingCircle">
+                <div class="breath-text" id="breathText">Breathe with me</div>
+                <div class="breath-count" id="breathCount">4</div>
+            </div>
+            <div class="breathing-controls">
+                <button class="breath-btn" id="startBreathBtn">Start</button>
+                <button class="breath-btn" id="stopBreathBtn">Stop</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comfort Effects Container -->
+    <div id="comfortContainer"></div>
+
+    <script src="js/sad.js"></script>
+    <!--Link Back to Home-->
+    <a href="index.html" class="back-button">🏠 Back to Home</a>
+</body>
+</html>

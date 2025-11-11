@@ -1,0 +1,874 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif, sans-serif;
+    background: linear-gradient(135deg, #E6F3FF, #CCE7FF, #B3DBFF, #99CFFF);
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background Animation - Slower and more gentle */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Gentle Rain Drops Container */
+.rain-drops {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Individual Drop */
+.drop {
+    position: absolute;
+    width: 2px;
+    height: 15px;
+    background: linear-gradient(to bottom, rgba(135,206,250,0.6) 0%, rgba(135,206,250,0.1) 100%);
+    border-radius: 50px;
+    animation: dropFall linear infinite;
+}
+
+/* Drop Variations */
+.drop:nth-child(2n) {
+    background: linear-gradient(to bottom, rgba(173,216,230,0.5) 0%, rgba(173,216,230,0.1) 100%);
+    width: 1.5px;
+    height: 12px;
+    animation-duration: 1.2s;
+}
+
+.drop:nth-child(3n) {
+    background: linear-gradient(to bottom, rgba(176,224,230,0.4) 0%, rgba(176,224,230,0.1) 100%);
+    width: 2.5px;
+    height: 18px;
+    animation-duration: 1.5s;
+}
+
+.drop:nth-child(4n) {
+    background: linear-gradient(to bottom, rgba(191,239,255,0.3) 0%, rgba(191,239,255,0.1) 100%);
+    width: 1px;
+    height: 10px;
+    animation-duration: 1s;
+}
+
+/* Gentle Rain Animation */
+@keyframes dropFall {
+    0% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Main Title and Subtitle */
+.main-title {
+    font-size: 2.8rem;
+    color: #4682B4;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+    animation: gentlePulse 5s ease-in-out infinite;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #5F9EA0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+    text-align: center;
+    font-style: italic;
+}
+
+@keyframes gentlePulse {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.02); opacity: 1; }
+}
+
+/* Buttons Styling */
+.buttons-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.comfort-btn {
+    background: linear-gradient(45deg, #B0C4DE, #D3D3D3);
+    color: #2F4F4F;
+}
+
+.comfort-btn:hover {
+    background: linear-gradient(45deg, #D3D3D3, #E6E6FA);
+}
+
+.hug-btn {
+    background: linear-gradient(45deg, #DDA0DD, #E6E6FA);
+    color: #483D8B;
+}
+
+.hug-btn:hover {
+    background: linear-gradient(45deg, #E6E6FA, #F0E6FF);
+}
+
+.support-btn {
+    background: linear-gradient(45deg, #98FB98, #90EE90);
+    color: #2F4F4F;
+}
+
+.support-btn:hover {
+    background: linear-gradient(45deg, #90EE90, #AFEEEE);
+}
+
+.hope-btn {
+    background: linear-gradient(45deg, #FFB6C1, #FFC0CB);
+    color: #8B4513;
+}
+
+.hope-btn:hover {
+    background: linear-gradient(45deg, #FFC0CB, #FFCCCB);
+}
+
+/* Quote Container Styling */
+.quote-container {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 25px;
+    margin: 20px;
+    max-width: 650px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(176, 224, 230, 0.3);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+
+.quote-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quote-text {
+    font-size: 1.2rem;
+    color: #2F4F4F;
+    text-align: center;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.quote-author {
+    font-size: 0.9rem;
+    color: #708090;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Virtual Hug Zone */
+.hug-zone {
+    display: none;
+    margin: 20px;
+    animation: fadeInSlow 1s ease-in;
+}
+
+.hug-zone.show {
+    display: block;
+}
+
+.hug-animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hug-circle {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(221, 160, 221, 0.3), rgba(230, 230, 250, 0.3));
+    border: 3px solid #DDA0DD;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: hugPulse 4s ease-in-out infinite;
+    position: relative;
+}
+
+.hug-circle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(221, 160, 221, 0.5);
+}
+
+@keyframes hugPulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(221, 160, 221, 0.3);
+    }
+    50% { 
+        transform: scale(1.05);
+        box-shadow: 0 0 40px rgba(221, 160, 221, 0.6);
+    }
+}
+
+.hug-text {
+    color: #483D8B;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.hug-counter {
+    color: #8B7BC8;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* Support Tools */
+.support-tools {
+    display: none;
+    margin: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(152, 251, 152, 0.3);
+    animation: fadeInSlow 1s ease-in;
+    max-width: 500px;
+}
+
+.support-tools.show {
+    display: block;
+}
+
+.tools-title {
+    font-size: 1.3rem;
+    color: #2F4F4F;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.tool-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    border-color: #98FB98;
+    box-shadow: 0 8px 20px rgba(152, 251, 152, 0.3);
+}
+
+.tool-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.tool-text {
+    color: #2F4F4F;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Hope Activities */
+.hope-activities {
+    display: none;
+    margin: 20px;
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(255, 192, 203, 0.2));
+    border-radius: 20px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    animation: fadeInSlow 1s ease-in;
+    max-width: 550px;
+}
+
+.hope-activities.show {
+    display: block;
+}
+
+.hope-title {
+    font-size: 1.3rem;
+    color: #8B4513;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.hope-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.hope-step {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hope-step:hover {
+    background: rgba(255, 192, 203, 0.4);
+    transform: translateX(5px);
+}
+
+.hope-step.selected {
+    background: linear-gradient(45deg, rgba(255, 182, 193, 0.6), rgba(255, 192, 203, 0.6));
+    border: 2px solid #FFB6C1;
+}
+
+.step-icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+
+.step-text {
+    color: #8B4513;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.hope-message {
+    text-align: center;
+    color: #8B4513;
+    font-style: italic;
+    min-height: 25px;
+    font-size: 1rem;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
+/* Breathing Exercise */
+.breathing-exercise {
+    display: none;
+    margin: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(135, 206, 250, 0.3);
+    animation: fadeInSlow 1s ease-in;
+    text-align: center;
+}
+
+.breathing-exercise.show {
+    display: block;
+}
+
+.breathing-title {
+    font-size: 1.2rem;
+    color: #4682B4;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.breathing-circle {
+    width: 150px;
+    height: 150px;
+    border: 4px solid #87CEEB;
+    border-radius: 50%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(135, 206, 235, 0.1), transparent);
+    transition: all 0.3s ease;
+}
+
+.breathing-circle.breathing {
+    animation: breatheAnimation 4s ease-in-out infinite;
+}
+
+@keyframes breatheAnimation {
+    0%, 100% { 
+        transform: scale(1);
+        border-color: #87CEEB;
+    }
+    50% { 
+        transform: scale(1.3);
+        border-color: #4682B4;
+    }
+}
+
+.breath-text {
+    color: #4682B4;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.breath-count {
+    color: #87CEEB;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.breathing-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.breath-btn {
+    background: linear-gradient(45deg, #87CEEB, #B0E0E6);
+    color: #2F4F4F;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.breath-btn:hover {
+    background: linear-gradient(45deg, #B0E0E6, #ADD8E6);
+    transform: translateY(-2px);
+}
+
+/* Fade In Animation */
+@keyframes fadeInSlow {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Comfort Bubbles Animation */
+.comfort-bubble {
+    position: fixed;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(173,216,230,0.6), rgba(135,206,250,0.3));
+    pointer-events: none;
+    z-index: 1;
+    animation: bubbleFloat linear infinite;
+}
+
+@keyframes bubbleFloat {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(90vh) scale(1);
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Heart Effects */
+.heart {
+    position: absolute;
+    color: #87CEEB;
+    font-size: 16px;
+    pointer-events: none;
+    animation: heartFloat 3s ease-out forwards;
+}
+
+@keyframes heartFloat {
+    0% {
+        transform: translateY(0) scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-30px) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-60px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Gentle Sparkle Effects */
+.sparkle {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: #B0E0E6;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+    animation: gentleSparkle 2s ease-out forwards;
+}
+
+@keyframes gentleSparkle {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .btn {
+        padding: 10px 18px;
+        font-size: 0.8rem;
+    }
+    
+    .quote-container {
+        margin: 20px 10px;
+        padding: 20px;
+    }
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .hug-circle {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .breathing-circle {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .hope-activities,
+    .support-tools {
+        margin: 15px 10px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.8rem;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 30px;
+    }
+    
+    .btn {
+        padding: 8px 15px;
+        font-size: 0.75rem;
+    }
+    
+    .quote-text {
+        font-size: 1rem;
+    }
+    
+    .quote-container {
+        padding: 15px;
+        margin: 15px 5px;
+    }
+    
+    .tool-card {
+        padding: 15px;
+    }
+    
+    .tool-icon {
+        font-size: 1.5rem;
+    }
+    
+    .hug-circle {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .hug-text {
+        font-size: 0.9rem;
+    }
+    
+    .breathing-circle {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .hope-steps {
+        gap: 10px;
+    }
+    
+    .hope-step {
+        padding: 12px;
+    }
+    
+    .step-icon {
+        font-size: 1.2rem;
+        margin-right: 10px;
+    }
+    
+    .step-text {
+        font-size: 0.9rem;
+    }
+}
+
+/* Back to Home Button - Fixed to match other buttons */
+.back-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px; /* Disamakan dengan ukuran tombol sebelumnya */
+    background: linear-gradient(45deg, #B0E0E6, #E0F6FF); /* Warna asli */
+    color: #2F4F4F;
+    text-decoration: none;
+    border-radius: 20px; /* Same as other buttons */
+    font-weight: bold;
+    font-size: 0.8rem; /* Disamakan dengan tombol sebelumnya */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Same as other buttons */
+    border: none; /* Same as other buttons */
+    z-index: 1001;
+    transition: all 0.4s ease; /* Same as other buttons */
+    font-family: 'Georgia', serif, sans-serif;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.5); /* Same as other buttons */
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: gentleSlideIn 1s ease-out 0.8s forwards;
+    outline: none;
+    cursor: pointer; /* Same as other buttons */
+}
+
+.back-button:hover {
+    background: linear-gradient(45deg, #87CEEB, #ADD8E6) !important; /* Warna asli dengan !important */
+    transform: translateY(-3px) scale(1.05) !important; /* Disamakan hover-nya dengan tombol sebelumnya */
+    box-shadow: 0 8px 25px rgba(135, 206, 235, 0.5) !important; /* Shadow yang lebih spesifik */
+    color: #1e3a3a !important; /* Warna text saat hover */
+}
+
+.back-button:active {
+    transform: translateY(-1px) scale(0.95) !important; /* Disamakan efek klik-nya */
+    box-shadow: 0 4px 15px rgba(176, 224, 230, 0.5) !important;
+}
+
+.back-button:focus {
+    outline: none;
+}
+
+/* Keep the gentle slide animation */
+@keyframes gentleSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Remove all custom glow effects and comfort bubble */
+/* The button will now behave exactly like other buttons */
+
+/* Responsive untuk mobile */
+@media (max-width: 768px) {
+    .back-button {
+        bottom: 15px;
+        left: 15px;
+        padding: 7px 14px; /* Disamakan dengan tombol sebelumnya */
+        font-size: 0.7rem; /* Disamakan dengan tombol sebelumnya */
+        gap: 5px;
+        border-radius: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-button {
+        bottom: 10px;
+        left: 10px;
+        padding: 6px 12px; /* Disamakan dengan tombol sebelumnya */
+        font-size: 0.65rem; /* Disamakan dengan tombol sebelumnya */
+        gap: 4px;
+        border-radius: 16px;
+    }
+}
+
+/* Back to Home Button - Fixed to match other buttons */
+.back-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px; /* Disamakan dengan ukuran tombol sebelumnya */
+    background: linear-gradient(45deg, #B0E0E6, #E0F6FF); /* Warna asli */
+    color: #2F4F4F;
+    text-decoration: none;
+    border-radius: 20px; /* Same as other buttons */
+    font-weight: bold;
+    font-size: 0.8rem; /* Disamakan dengan tombol sebelumnya */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Same as other buttons */
+    border: none; /* Same as other buttons */
+    z-index: 1001;
+    transition: all 0.4s ease; /* Same as other buttons */
+    font-family: 'Georgia', serif, sans-serif;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.5); /* Same as other buttons */
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: gentleSlideIn 1s ease-out 0.8s forwards;
+    outline: none;
+    cursor: pointer; /* Same as other buttons */
+}
+
+.back-button:hover {
+    background: linear-gradient(45deg, #87CEEB, #ADD8E6) !important; /* Warna asli dengan !important */
+    transform: translateY(-3px) scale(1.05) !important; /* Disamakan hover-nya dengan tombol sebelumnya */
+    box-shadow: 0 8px 25px rgba(135, 206, 235, 0.5) !important; /* Shadow yang lebih spesifik */
+    color: #1e3a3a !important; /* Warna text saat hover */
+}
+
+.back-button:active {
+    transform: translateY(-1px) scale(0.95) !important; /* Disamakan efek klik-nya */
+    box-shadow: 0 4px 15px rgba(176, 224, 230, 0.5) !important;
+}
+
+.back-button:focus {
+    outline: none;
+}
+
+/* Keep the gentle slide animation */
+@keyframes gentleSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Remove all custom glow effects and comfort bubble */
+/* The button will now behave exactly like other buttons */
+
+/* Responsive untuk mobile */
+@media (max-width: 768px) {
+    .back-button {
+        bottom: 15px;
+        left: 15px;
+        padding: 7px 14px; /* Disamakan dengan tombol sebelumnya */
+        font-size: 0.7rem; /* Disamakan dengan tombol sebelumnya */
+        gap: 5px;
+        border-radius: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-button {
+        bottom: 10px;
+        left: 10px;
+        padding: 6px 12px; /* Disamakan dengan tombol sebelumnya */
+        font-size: 0.65rem; /* Disamakan dengan tombol sebelumnya */
+        gap: 4px;
+        border-radius: 16px;
+    }
+}

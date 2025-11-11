@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Essential Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- SEO Meta Tags -->
+  <title>Remember Me - Your Gentle Mood Companion</title>
+  <meta name="description" content="A gentle mood tracking companion that helps you reflect on your feelings and emotions. Start your journey to better emotional awareness today.">
+  <meta name="keywords" content="mood tracker, emotions, feelings, mental health, wellbeing, emotional awareness">
+  <meta name="author" content="Remember Me App">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Remember Me - Your Gentle Mood Companion">
+  <meta property="og:description" content="A gentle space to reflect on your feelings and emotions with personalized support.">
+  <meta property="og:url" content="https://yoursite.com">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Remember Me - Mood Tracking Companion">
+  <meta name="twitter:description" content="Start your journey to better emotional awareness with gentle, personalized support.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="shortcut icon" href="images/gift.png" type="image/x-icon">
+  
+  <!-- PWA Meta Tags - BARU -->
+  <meta name="theme-color" content="#FF69B4">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Remember Me">
+  <meta name="format-detection" content="telephone=no">
+  
+  <!-- PWA Manifest - BARU -->
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- PWA Icons - BARU -->
+  <link rel="apple-touch-icon" href="images/icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="images/icon-512.png">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/Home.css">
+</head>
+
+<body>
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Loading Screen -->
+  <div class="loading" id="loading-screen" role="status" aria-label="Loading">
+    <div class="loading-content">
+      <div class="loading-spinner" aria-hidden="true"></div>
+      <div class="loading-text">Thinking about you...</div>
+    </div>
+  </div>
+
+  <!-- Background Animation -->
+  <div class="night" role="presentation" aria-hidden="true"></div>
+
+  <!-- Main Content Container -->
+  <main id="main-content" class="main-container">
+    
+    <!-- Home View -->
+    <div id="home-view" class="view active">
+      <!-- App Brand Header -->
+      <header class="app-header" role="banner">
+        <div class="brand-container">
+          <h1 class="app-title">
+            <span class="brand-icon" aria-hidden="true">🌸</span>
+            <span class="brand-text">It's your personal wellness & self-care space</span>
+          </h1>
+      </header>
+
+      <!-- Welcome Section - UPDATED -->
+      <section class="welcome-section" aria-labelledby="welcome-heading">
+        <div class="welcome-content">
+          <h2 id="welcome-heading" class="welcome-title">
+            <span class="welcome-icon" aria-hidden="true">🌸</span>
+            <span class="welcome-text">What is your mood like today?</span>
+          </h2>
+        </div>
+      </section>
+
+      <!-- Mood Selection Section -->
+      <section class="mood-section" aria-labelledby="mood-prompt">
+        <h3 id="mood-prompt" class="visually-hidden">Select your current mood to get personalized support</h3>
+        
+        <div class="buttons-container" role="radiogroup" aria-labelledby="mood-prompt">
+          
+          <!-- Happy Mood Button -->
+          <a 
+            href="Happy page.html" 
+            id="mood-happy" 
+            class="btn mood-btn mood-happy" 
+            role="button"
+            aria-describedby="happy-desc"
+          >
+            <div class="btn-icon" aria-hidden="true">✨</div>
+            <div class="btn-content">
+              <span class="btn-text">Happy <span class="btn-emoji" role="img" aria-label="happy face">😊</span></span>
+              <span class="btn-subtitle">Celebrate your joy</span>
+            </div>
+            <span id="happy-desc" class="visually-hidden">Access uplifting quotes, celebration tools, and ways to share your happiness</span>
+          </a>
+
+          <!-- Sad Mood Button -->
+          <a 
+            href="Sad page.html" 
+            id="mood-sad" 
+            class="btn mood-btn mood-sad" 
+            role="button"
+            aria-describedby="sad-desc"
+          >
+            <div class="btn-icon" aria-hidden="true">💙</div>
+            <div class="btn-content">
+              <span class="btn-text">Sad <span class="btn-emoji" role="img" aria-label="sad face">😢</span></span>
+              <span class="btn-subtitle">Find comfort & healing</span>
+            </div>
+            <span id="sad-desc" class="visually-hidden">Access comfort quotes, virtual hugs, and gentle support tools for difficult moments</span>
+          </a>
+
+          <!-- Angry Mood Button -->
+          <a 
+            href="Angry page.html" 
+            id="mood-angry" 
+            class="btn mood-btn mood-angry" 
+            role="button"
+            aria-describedby="angry-desc"
+          >
+            <div class="btn-icon" aria-hidden="true">🔥</div>
+            <div class="btn-content">
+              <span class="btn-text">Angry <span class="btn-emoji" role="img" aria-label="angry face">😠</span></span>
+              <span class="btn-subtitle">Channel your energy</span>
+            </div>
+            <span id="angry-desc" class="visually-hidden">Access tools to release anger constructively, breathing exercises, and calming techniques</span>
+          </a>
+
+          <!-- Exhausted Mood Button -->
+          <a 
+            href="Exhausted page.html" 
+            id="mood-exhausted" 
+            class="btn mood-btn mood-exhausted" 
+            role="button"
+            aria-describedby="exhausted-desc"
+          >
+            <div class="btn-icon" aria-hidden="true">🌙</div>
+            <div class="btn-content">
+              <span class="btn-text">Exhausted <span class="btn-emoji" role="img" aria-label="tired face">😴</span></span>
+              <span class="btn-subtitle">Rest & recharge</span>
+            </div>
+            <span id="exhausted-desc" class="visually-hidden">Access rest and relaxation tools, gentle energy restoration, and self-care guidance</span>
+          </a>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions" aria-live="polite">
+          <p>Use arrow keys to navigate, Enter or Space to select your mood</p>
+        </div>
+      </section>
+
+      <!-- Features Preview Section -->
+      <section class="features-preview" aria-labelledby="features-heading">
+        <h3 id="features-heading" class="features-title">What you'll find in each mood</h3>
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon">💝</div>
+            <h4>Personalized Support</h4>
+            <p>Tailored content that matches your emotional state</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🎯</div>
+            <h4>Practical Tools</h4>
+            <p>Interactive features to help you process and manage feelings</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🌱</div>
+            <h4>Gentle Guidance</h4>
+            <p>Compassionate quotes and wisdom for your journey</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Description Section - MOVED FROM TOP -->
+      <section class="bottom-description">
+        <div class="bottom-description-content">
+          <p class="bottom-description-text">
+            This space is created just for you - to help you practice self-care, find moments of peace, and remember how wonderful you are. 
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Mood Content View -->
+    <div id="mood-view" class="view">
+      <button type="button" class="back-button" id="back-to-home">
+        <span>←</span> Back to Home
+      </button>
+      
+      <div id="mood-content" class="mood-content">
+        <!-- Content will be dynamically inserted here -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Help Modal -->
+  <div id="help-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-overlay" aria-hidden="true"></div>
+    <div class="modal-content">
+      <header class="modal-header">
+        <h2 id="modal-title">How Remember Me Works</h2>
+        <button type="button" class="modal-close" aria-label="Close dialog">&times;</button>
+      </header>
+      
+      <div class="modal-body">
+        <div class="onboarding-steps">
+          <div class="step">
+            <div class="step-icon">1️⃣</div>
+            <div class="step-content">
+              <h3>Choose Your Mood</h3>
+              <p>Select how you're feeling right now. It's okay to feel any way - all emotions are valid.</p>
+            </div>
+          </div>
+          
+          <div class="step">
+            <div class="step-icon">2️⃣</div>
+            <div class="step-content">
+              <h3>Get Personalized Support</h3>
+              <p>Receive content tailored to your emotional state, including quotes, tools, and gentle guidance.</p>
+            </div>
+          </div>
+          
+          <div class="step">
+            <div class="step-icon">3️⃣</div>
+            <div class="step-content">
+              <h3>Take Your Time</h3>
+              <p>Spend 2-3 minutes with the experience. There's no pressure - go at your own pace.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer class="modal-footer">
+        <button type="button" class="btn-primary modal-got-it">Got it, thanks!</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Time-based Greeting -->
+  <div id="time-greeting" class="time-greeting" aria-live="polite">
+    <span class="greeting-icon"></span>
+    <span class="greeting-text"></span>
+  </div>
+
+  <!-- Error/Toast Container -->
+  <div id="toast-container" aria-live="assertive" role="alert" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/Home.js"></script>
+
+  <!-- PWA Service Worker Registration - BARU -->
+  <script>
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then((registration) => {
+            console.log('Service Worker registered successfully:', registration.scope);
+          })
+          .catch((error) => {
+            console.log('Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Remember Me",
+    "description": "A gentle mood tracking companion that provides personalized emotional support and practical tools for wellbeing",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Remember Me App"
+    }
+  }
+  </script>
+</body>
+</html>

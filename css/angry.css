@@ -1,0 +1,810 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+body {
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    background: linear-gradient(135deg, #FF4444, #FF6B35, #F7931E, #FFB347);
+    background-size: 400% 400%;
+    animation: fireGradient 4s ease infinite;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    transition: all 1s ease;
+}
+
+/* Cooldown Mode */
+body.cooldown-mode {
+    background: linear-gradient(135deg, #E0F6FF, #B0E0E6, #87CEEB, #ADD8E6);
+    animation: cooldownGradient 8s ease infinite;
+}
+
+@keyframes cooldownGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Intense Fire Background Animation */
+@keyframes fireGradient {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 100% 25%; }
+    50% { background-position: 100% 75%; }
+    75% { background-position: 0% 75%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Fire Sparks Container */
+.fire-sparks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Individual Spark */
+.spark {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, #FFD700 0%, #FF4500 50%, #DC143C 100%);
+    border-radius: 50%;
+    animation: sparkFly linear infinite;
+    box-shadow: 0 0 6px #FF4500;
+}
+
+/* Spark Variations */
+.spark:nth-child(2n) {
+    background: radial-gradient(circle, #FFA500 0%, #FF6347 50%, #B22222 100%);
+    width: 3px;
+    height: 3px;
+    animation-duration: 2s;
+}
+
+.spark:nth-child(3n) {
+    background: radial-gradient(circle, #FFFF00 0%, #FF8C00 50%, #CD5C5C 100%);
+    width: 5px;
+    height: 5px;
+    animation-duration: 3s;
+}
+
+.spark:nth-child(4n) {
+    background: radial-gradient(circle, #FF7F50 0%, #FF4500 50%, #8B0000 100%);
+    width: 2px;
+    height: 2px;
+    animation-duration: 1.5s;
+}
+
+/* Cooldown sparks (dimmer) */
+body.cooldown-mode .spark {
+    background: radial-gradient(circle, #B0E0E6 0%, #87CEEB 50%, #4682B4 100%);
+    box-shadow: 0 0 3px #87CEEB;
+    animation-duration: 5s;
+    opacity: 0.6;
+}
+
+/* Spark Flying Animation */
+@keyframes sparkFly {
+    0% {
+        transform: translateY(100vh) translateX(0px) rotate(0deg);
+        opacity: 1;
+        scale: 1;
+    }
+    25% {
+        transform: translateY(75vh) translateX(30px) rotate(90deg);
+        opacity: 1;
+        scale: 1.2;
+    }
+    50% {
+        transform: translateY(50vh) translateX(-20px) rotate(180deg);
+        opacity: 0.8;
+        scale: 0.8;
+    }
+    75% {
+        transform: translateY(25vh) translateX(40px) rotate(270deg);
+        opacity: 0.5;
+        scale: 1.1;
+    }
+    100% {
+        transform: translateY(-10vh) translateX(-10px) rotate(360deg);
+        opacity: 0;
+        scale: 0;
+    }
+}
+
+/* Lightning Effects - Reduced intensity */
+.lightning-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.lightning {
+    position: absolute;
+    width: 2px;
+    height: 100vh;
+    background: linear-gradient(to bottom, transparent 0%, #FFFFFF 20%, #FFFF00 40%, #FFFFFF 60%, transparent 100%);
+    opacity: 0;
+    animation: lightningStrike 0.2s ease-in-out;
+    box-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFF00;
+}
+
+body.cooldown-mode .lightning {
+    background: linear-gradient(to bottom, transparent 0%, #B0E0E6 30%, #87CEEB 50%, #B0E0E6 70%, transparent 100%);
+    box-shadow: 0 0 5px #87CEEB, 0 0 10px #B0E0E6;
+    animation: lightningStrikeSoft 0.4s ease-in-out;
+}
+
+@keyframes lightningStrike {
+    0% { opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+@keyframes lightningStrikeSoft {
+    0% { opacity: 0; }
+    50% { opacity: 0.3; }
+    100% { opacity: 0; }
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Main Title and Subtitle */
+.main-title {
+    font-size: 3.5rem;
+    color: #8B0000;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px #FF4500;
+    margin-bottom: 10px;
+    animation: angrePulse 1.5s ease-in-out infinite;
+    text-align: center;
+    font-weight: 900;
+    transition: all 1s ease;
+}
+
+body.cooldown-mode .main-title {
+    color: #4682B4;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1), 0 0 15px #87CEEB;
+    animation: calmPulse 4s ease-in-out infinite;
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    color: #654321;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 40px;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    transition: all 1s ease;
+}
+
+body.cooldown-mode .subtitle {
+    color: #5F9EA0;
+}
+
+@keyframes angrePulse {
+    0%, 100% { 
+        transform: scale(1); 
+        text-shadow: 3px 3px 6px rgba(0,0,0,0.5), 0 0 20px #FF4500;
+    }
+    50% { 
+        transform: scale(1.05); 
+        text-shadow: 3px 3px 6px rgba(0,0,0,0.7), 0 0 30px #FF6500;
+    }
+}
+
+@keyframes calmPulse {
+    0%, 100% { 
+        transform: scale(1); 
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1), 0 0 15px #87CEEB;
+    }
+    50% { 
+        transform: scale(1.02); 
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2), 0 0 25px #B0E0E6;
+    }
+}
+
+/* Enhanced Buttons Styling */
+.buttons-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    border: none;
+    border-radius: 10px;
+    padding: 15px 25px;
+    font-size: 1rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    transform-origin: center;
+}
+
+/* Disabled state during cooldown */
+body.cooldown-mode .release-btn,
+body.cooldown-mode .punch-btn {
+    opacity: 0.4;
+    cursor: not-allowed;
+    filter: grayscale(50%);
+}
+
+body.cooldown-mode .release-btn:hover,
+body.cooldown-mode .punch-btn:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+body.cooldown-mode .release-btn::before,
+body.cooldown-mode .punch-btn::before {
+    display: none;
+}
+
+/* Shimmer/Shine effect */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: var(--shadow-medium);
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:active {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--shadow-soft);
+}
+
+.release-btn {
+    background: linear-gradient(45deg, #FF4500, #FF6347);
+    color: white;
+}
+
+.release-btn:hover {
+    background: linear-gradient(45deg, #FF6347, #FF7F50);
+    box-shadow: 0 8px 25px rgba(255, 69, 0, 0.5);
+}
+
+.punch-btn {
+    background: linear-gradient(45deg, #DC143C, #B22222);
+    color: white;
+}
+
+.punch-btn:hover {
+    background: linear-gradient(45deg, #B22222, #8B0000);
+    box-shadow: 0 8px 25px rgba(220, 20, 60, 0.5);
+}
+
+.breathe-btn {
+    background: linear-gradient(45deg, #DAA520, #B8860B);
+    color: white;
+}
+
+.breathe-btn:hover {
+    background: linear-gradient(45deg, #B8860B, #9ACD32);
+    box-shadow: 0 8px 25px rgba(218, 165, 32, 0.5);
+}
+
+.cooldown-btn {
+    background: linear-gradient(45deg, #87CEEB, #B0E0E6);
+    color: #2F4F4F;
+    display: inline-block;
+}
+
+@keyframes cooldownBtnPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(135, 206, 235, 0.3); }
+    50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(135, 206, 235, 0.5); }
+}
+
+.cooldown-btn:hover {
+    background: linear-gradient(45deg, #B0E0E6, #ADD8E6);
+    box-shadow: 0 8px 25px rgba(135, 206, 235, 0.6);
+}
+
+/* Quote Container Styling */
+.quote-container {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px;
+    max-width: 700px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 69, 0, 0.3);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.quote-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quote-text {
+    font-size: 1.3rem;
+    color: #FFE4B5;
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.quote-author {
+    font-size: 1rem;
+    color: #DEB887;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Enhanced Punch Bag */
+.punch-bag {
+    display: none;
+    width: 150px;
+    height: 200px;
+    background: linear-gradient(to bottom, #8B4513 0%, #A0522D 50%, #8B4513 100%);
+    border-radius: 20px;
+    margin: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    border: 3px solid #654321;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.punch-bag.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: swingBag 2s ease-in-out infinite;
+}
+
+.punch-bag.cooldown {
+    background: linear-gradient(to bottom, #87CEEB 0%, #B0E0E6 50%, #87CEEB 100%);
+    border-color: #4682B4;
+    animation: gentleSwing 4s ease-in-out infinite;
+}
+
+@keyframes swingBag {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(2deg); }
+}
+
+@keyframes gentleSwing {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(1deg); }
+}
+
+.punch-impact {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, #FFD700 0%, #FF4500 50%, transparent 100%);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.punch-impact.hit {
+    animation: punchHit 0.5s ease-out;
+}
+
+@keyframes punchHit {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    50% {
+        width: 100px;
+        height: 100px;
+        opacity: 0.8;
+    }
+    100% {
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+    }
+}
+
+.punch-counter {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #FFD700;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Enhanced Breathing Circle */
+.breathing-circle {
+    display: none;
+    width: 200px;
+    height: 200px;
+    border: 4px solid #DAA520;
+    border-radius: 50%;
+    margin: 30px;
+    position: relative;
+    background: radial-gradient(circle, rgba(218, 165, 32, 0.2) 0%, transparent 70%);
+}
+
+.breathing-circle.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation: breatheAnimation 4s ease-in-out infinite;
+}
+
+.breathing-circle.guided {
+    animation: guidedBreathing 4s ease-in-out infinite;
+    border-color: #32CD32;
+    background: radial-gradient(circle, rgba(50, 205, 50, 0.2) 0%, transparent 70%);
+}
+
+@keyframes breatheAnimation {
+    0%, 100% { 
+        transform: scale(1);
+        border-color: #DAA520;
+        box-shadow: 0 0 20px rgba(218, 165, 32, 0.5);
+    }
+    50% { 
+        transform: scale(1.3);
+        border-color: #9ACD32;
+        box-shadow: 0 0 40px rgba(154, 205, 50, 0.7);
+    }
+}
+
+@keyframes guidedBreathing {
+    0%, 100% { 
+        transform: scale(1);
+        border-color: #32CD32;
+        box-shadow: 0 0 20px rgba(50, 205, 50, 0.5);
+    }
+    25% { 
+        transform: scale(1.2);
+        border-color: #98FB98;
+        box-shadow: 0 0 30px rgba(152, 251, 152, 0.7);
+    }
+    50% { 
+        transform: scale(1.3);
+        border-color: #90EE90;
+        box-shadow: 0 0 40px rgba(144, 238, 144, 0.9);
+    }
+    75% { 
+        transform: scale(1.1);
+        border-color: #32CD32;
+        box-shadow: 0 0 25px rgba(50, 205, 50, 0.6);
+    }
+}
+
+.breath-text {
+    font-size: 1.2rem;
+    color: #DAA520;
+    font-weight: bold;
+    text-align: center;
+}
+
+.breath-counter {
+    font-size: 2rem;
+    color: #DAA520;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Cooldown Zone */
+.cooldown-zone {
+    display: none;
+    background: linear-gradient(135deg, rgba(176, 224, 230, 0.8), rgba(173, 216, 230, 0.8));
+    border-radius: 25px;
+    padding: 30px;
+    margin: 20px;
+    text-align: center;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(176, 224, 230, 0.3);
+    box-shadow: 0 8px 25px rgba(135, 206, 235, 0.2);
+}
+
+.cooldown-zone.show {
+    display: block;
+    animation: cooldownGentleGlow 4s ease-in-out infinite;
+}
+
+@keyframes cooldownGentleGlow {
+    0%, 100% { box-shadow: 0 8px 25px rgba(176, 224, 230, 0.2); }
+    50% { box-shadow: 0 12px 30px rgba(176, 224, 230, 0.4); }
+}
+
+.cooldown-title {
+    font-size: 1.4rem;
+    color: #2F4F4F;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.cooldown-message {
+    font-size: 1rem;
+    color: #4682B4;
+    margin-bottom: 20px;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.cooldown-timer {
+    font-size: 1rem;
+    color: #5F9EA0;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 12px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Explosion Effects */
+.explosion {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #FFD700 0%, #FF4500 50%, #DC143C 100%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(5);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(10);
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .quote-container {
+        margin: 20px 10px;
+        padding: 20px;
+    }
+    
+    .punch-bag {
+        width: 120px;
+        height: 160px;
+    }
+    
+    .breathing-circle {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .cooldown-zone {
+        margin: 20px 10px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .quote-text {
+        font-size: 1.1rem;
+    }
+    
+    .quote-container {
+        padding: 15px;
+        margin: 15px 5px;
+    }
+    
+    .punch-bag {
+        width: 100px;
+        height: 130px;
+    }
+    
+    .breathing-circle {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .breath-text {
+        font-size: 1rem;
+    }
+    
+    .cooldown-zone {
+        padding: 20px;
+        margin: 15px 5px;
+    }
+}
+
+/* Back to Home Button untuk Angry Page - Fixed untuk match dengan .btn */ 
+.back-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px; /* Ukuran disamakan dengan tombol sebelumnya */
+    background: linear-gradient(45deg, #FF4500, #FF6347); /* Warna angry tetap */
+    color: white;
+    text-decoration: none;
+    border-radius: 10px; /* Bentuk asli dipertahankan */
+    font-weight: 900; /* Sama dengan .btn */
+    font-size: 0.8rem; /* Ukuran disamakan dengan tombol sebelumnya */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Sama dengan .btn */
+    border: none;
+    z-index: 1001;
+    transition: all 0.3s ease; /* Sama dengan .btn */
+    font-family: 'Impact', 'Arial Black', sans-serif; /* Sama dengan body dan .btn */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Sama dengan .btn */
+    text-transform: uppercase; /* Sama dengan .btn */
+    position: relative; /* Sama dengan .btn */
+    overflow: hidden; /* Sama dengan .btn */
+    transform-origin: center; /* Sama dengan .btn */
+    opacity: 0;
+    animation: fierySlideIn 1s ease-out 0.8s forwards;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Shimmer/Shine effect - sama dengan .btn */
+.back-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.back-button:hover {
+    background: linear-gradient(45deg, #FF6347, #FF7F50) !important;
+    transform: translateY(-3px) scale(1.05) !important; /* Ukuran hover disamakan */
+    box-shadow: var(--shadow-medium) !important; /* Sama dengan .btn:hover */
+}
+
+.back-button:hover::before {
+    left: 100%; /* Shimmer effect sama dengan .btn */
+}
+
+.back-button:active {
+    transform: translateY(-1px) scale(0.95) !important; /* Ukuran klik disamakan */
+    box-shadow: var(--shadow-soft) !important; /* Sama dengan .btn:active */
+}
+
+.back-button:focus {
+    outline: none;
+}
+
+/* Cooldown mode styling */
+body.cooldown-mode .back-button {
+    background: linear-gradient(45deg, #87CEEB, #B0E0E6); /* Sama dengan .cooldown-btn */
+    color: #2F4F4F; /* Sama dengan .cooldown-btn */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+body.cooldown-mode .back-button:hover {
+    background: linear-gradient(45deg, #B0E0E6, #ADD8E6) !important; /* Sama dengan .cooldown-btn:hover */
+    transform: translateY(-3px) scale(1.05) !important; /* Ukuran hover disamakan */
+    box-shadow: 0 8px 25px rgba(135, 206, 235, 0.6) !important; /* Sama dengan .cooldown-btn:hover */
+}
+
+/* Fiery slide animation dari kiri */
+@keyframes fierySlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive untuk mobile - sesuaikan dengan tombol sebelumnya */
+@media (max-width: 768px) {
+    .back-button {
+        bottom: 15px;
+        left: 15px;
+        padding: 7px 14px; /* Disamakan ukurannya */
+        font-size: 0.7rem; /* Disamakan ukurannya */
+        gap: 7px;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-button {
+        bottom: 10px;
+        left: 10px;
+        padding: 6px 12px; /* Disamakan ukurannya */
+        font-size: 0.65rem; /* Disamakan ukurannya */
+        gap: 6px;
+    }
+}

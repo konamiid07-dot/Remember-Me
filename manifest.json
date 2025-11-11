@@ -1,0 +1,32 @@
+{
+  "name": "Remember Me - Your Wellness Space",
+  "short_name": "Remember Me",
+  "description": "Your personal wellness & self-care space to track and improve your mood",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#FFB6D9",
+  "theme_color": "#FF69B4",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "lifestyle", "wellness"],
+  "screenshots": [
+    {
+      "src": "images/screenshot.png",
+      "sizes": "540x720",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,783 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background: linear-gradient(135deg, #E6E6FA, #D8BFD8, #DDA0DD, #F0E6FF);
+    background-size: 400% 400%;
+    animation: gentleFlow 15s ease infinite;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    transition: all 1s ease;
+}
+
+/* Night Mode */
+body.night-mode {
+    background: linear-gradient(135deg, #191970, #483D8B, #4B0082, #2E2E2E);
+}
+
+/* Gentle Background Animation */
+@keyframes gentleFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Night Mode Toggle */
+.night-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    z-index: 1000;
+}
+
+.night-mode-toggle:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Stars Container */
+.stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+body.night-mode .stars-container {
+    opacity: 1;
+}
+
+/* Individual Star */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s ease-in-out infinite;
+    box-shadow: 0 0 4px white;
+}
+
+.star:nth-child(2n) {
+    width: 3px;
+    height: 3px;
+    animation-duration: 4s;
+}
+
+.star:nth-child(3n) {
+    width: 1px;
+    height: 1px;
+    animation-duration: 2s;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Clouds Container */
+.clouds-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Individual Cloud */
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50px;
+    animation: cloudFloat linear infinite;
+}
+
+.cloud:before {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50px;
+}
+
+.cloud:after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50px;
+}
+
+/* Cloud sizes and positions */
+.cloud:nth-child(1) {
+    width: 60px;
+    height: 20px;
+    animation-duration: 20s;
+}
+
+.cloud:nth-child(1):before {
+    width: 30px;
+    height: 30px;
+    top: -15px;
+    left: 10px;
+}
+
+.cloud:nth-child(1):after {
+    width: 40px;
+    height: 25px;
+    top: -10px;
+    right: 15px;
+}
+
+@keyframes cloudFloat {
+    0% { transform: translateX(-100px); }
+    100% { transform: translateX(calc(100vw + 100px)); }
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Main Title and Subtitle */
+.main-title {
+    font-size: 3rem;
+    color: #6A5ACD;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+    animation: sleepyPulse 6s ease-in-out infinite;
+    text-align: center;
+    font-weight: normal;
+}
+
+body.night-mode .main-title {
+    color: #E6E6FA;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #8B7BC8;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+    text-align: center;
+    font-style: italic;
+}
+
+body.night-mode .subtitle {
+    color: #D8BFD8;
+}
+
+@keyframes sleepyPulse {
+    0%, 100% { 
+        transform: scale(1); 
+        opacity: 0.8; 
+    }
+    50% { 
+        transform: scale(1.01); 
+        opacity: 1; 
+    }
+}
+
+/* Buttons Styling */
+.buttons-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    font-weight: normal;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.rest-btn {
+    background: linear-gradient(45deg, #E6E6FA, #D8BFD8);
+    color: #4B0082;
+}
+
+.relax-btn {
+    background: linear-gradient(45deg, #F0E68C, #DDA0DD);
+    color: #6A5ACD;
+}
+
+.energy-btn {
+    background: linear-gradient(45deg, #98FB98, #90EE90);
+    color: #228B22;
+}
+
+.sleep-btn {
+    background: linear-gradient(45deg, #B0C4DE, #87CEEB);
+    color: #191970;
+}
+
+/* Quote Container Styling */
+.quote-container {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 25px;
+    margin: 20px;
+    max-width: 650px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(230, 230, 250, 0.3);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+
+body.night-mode .quote-container {
+    background: rgba(25, 25, 112, 0.8);
+    border: 1px solid rgba(216, 191, 216, 0.3);
+}
+
+.quote-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quote-text {
+    font-size: 1.2rem;
+    color: #4B0082;
+    text-align: center;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+body.night-mode .quote-text {
+    color: #E6E6FA;
+}
+
+.quote-author {
+    font-size: 0.9rem;
+    color: #8B7BC8;
+    text-align: center;
+    font-style: italic;
+}
+
+body.night-mode .quote-author {
+    color: #D8BFD8;
+}
+
+/* Relaxation Zone */
+.relaxation-zone {
+    display: none;
+    margin: 20px;
+    animation: fadeInSlow 1s ease-in;
+}
+
+.relaxation-zone.show {
+    display: block;
+}
+
+.cozy-chair {
+    width: 200px;
+    height: 150px;
+    background: linear-gradient(to bottom, #DDA0DD 0%, #D8BFD8 50%, #E6E6FA 100%);
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.cozy-chair:hover {
+    transform: scale(1.05);
+}
+
+.chair-text {
+    color: #4B0082;
+    font-size: 1rem;
+    text-align: center;
+    font-style: italic;
+}
+
+body.night-mode .chair-text {
+    color: #E6E6FA;
+}
+
+/* Energy Meter */
+.energy-meter {
+    display: none;
+    margin: 20px;
+    width: 300px;
+    animation: fadeInSlow 1s ease-in;
+}
+
+.energy-meter.show {
+    display: block;
+}
+
+.meter-label {
+    color: #6A5ACD;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+body.night-mode .meter-label {
+    color: #E6E6FA;
+}
+
+.meter-bar {
+    width: 100%;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(106, 90, 205, 0.3);
+}
+
+.meter-fill {
+    height: 100%;
+    background: linear-gradient(to right, #FF6B6B, #FFD93D, #6BCF7F);
+    border-radius: 10px;
+    width: 25%;
+    transition: width 2s ease;
+    animation: energyPulse 3s ease-in-out infinite;
+}
+
+@keyframes energyPulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+.meter-text {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: #8B7BC8;
+}
+
+body.night-mode .meter-text {
+    color: #D8BFD8;
+}
+
+/* Sleep Sounds Panel */
+.sleep-sounds {
+    display: none;
+    margin: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(230, 230, 250, 0.3);
+    animation: fadeInSlow 1s ease-in;
+}
+
+body.night-mode .sleep-sounds {
+    background: rgba(25, 25, 112, 0.8);
+    border: 1px solid rgba(216, 191, 216, 0.3);
+}
+
+.sleep-sounds.show {
+    display: block;
+}
+
+.sounds-title {
+    color: #6A5ACD;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+body.night-mode .sounds-title {
+    color: #E6E6FA;
+}
+
+.sounds-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.sound-btn {
+    background: rgba(230, 230, 250, 0.8);
+    border: none;
+    border-radius: 15px;
+    padding: 8px 15px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #4B0082;
+}
+
+body.night-mode .sound-btn {
+    background: rgba(72, 61, 139, 0.8);
+    color: #E6E6FA;
+}
+
+.sound-btn:hover {
+    transform: scale(1.05);
+    background: rgba(216, 191, 216, 0.9);
+}
+
+.sound-btn.active {
+    background: linear-gradient(45deg, #DDA0DD, #D8BFD8);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.sound-indicator {
+    text-align: center;
+    color: #8B7BC8;
+    font-style: italic;
+}
+
+body.night-mode .sound-indicator {
+    color: #D8BFD8;
+}
+
+/* Gentle Reminder */
+.gentle-reminder {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 15px 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateX(300px);
+    transition: all 0.5s ease;
+    z-index: 100;
+    max-width: 250px;
+}
+
+body.night-mode .gentle-reminder {
+    background: rgba(25, 25, 112, 0.9);
+}
+
+.gentle-reminder.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reminder-text {
+    color: #6A5ACD;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+body.night-mode .reminder-text {
+    color: #E6E6FA;
+}
+
+/* Soft Glow Effects */
+.soft-glow {
+    position: fixed;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(230, 230, 250, 0.4), transparent);
+    pointer-events: none;
+    z-index: 1;
+    animation: softGlow 4s ease-in-out infinite;
+}
+
+@keyframes softGlow {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+/* Fade In Animation */
+@keyframes fadeInSlow {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
+    
+    .quote-container {
+        margin: 20px 10px;
+        padding: 20px;
+    }
+    
+    .cozy-chair {
+        width: 150px;
+        height: 120px;
+    }
+    
+    .energy-meter {
+        width: 250px;
+    }
+    
+    .gentle-reminder {
+        bottom: 20px;
+        right: 20px;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.8rem;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 30px;
+    }
+    
+    .btn {
+        padding: 8px 15px;
+        font-size: 0.75rem;
+    }
+    
+    .quote-text {
+        font-size: 1rem;
+    }
+    
+    .quote-container {
+        padding: 15px;
+        margin: 15px 5px;
+    }
+    
+    .cozy-chair {
+        width: 120px;
+        height: 100px;
+    }
+    
+    .chair-text {
+        font-size: 0.8rem;
+    }
+    
+    .energy-meter {
+        width: 200px;
+    }
+    
+    .sounds-buttons {
+        gap: 5px;
+    }
+    
+    .sound-btn {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+    }
+}
+
+/* Back to Home Button untuk Exhausted Page - Fixed berdasarkan HTML structure */
+.back-button {
+    /* Base styling sama dengan .btn */
+    border: none;
+    border-radius: 25px;
+    padding: 8px 16px; /* Ukuran disamakan dengan tombol sebelumnya */
+    font-size: 0.8rem; /* Ukuran disamakan dengan tombol sebelumnya */
+    font-weight: normal;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+    font-family: 'Trebuchet MS', sans-serif;
+    
+    /* Positioning dan animasi */
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    z-index: 1001;
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: slideInFromLeft 0.8s ease-out 0.5s forwards;
+    outline: none;
+    
+    /* Styling sama dengan .rest-btn */
+    background: linear-gradient(45deg, #E6E6FA, #D8BFD8);
+    color: #4B0082;
+}
+
+/* Hover effect sama dengan .btn:hover */
+.back-button:hover {
+    transform: translateY(-3px) !important; /* Disamakan hover offset-nya */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
+    background: linear-gradient(45deg, #E6E6FA, #D8BFD8) !important; /* Tetap sama saat hover */
+}
+
+/* Active effect sama dengan .btn:active */
+.back-button:active {
+    transform: translateY(-1px) !important; /* Disamakan efek klik-nya */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+    background: linear-gradient(45deg, #E6E6FA, #D8BFD8) !important; /* Tetap sama saat ditekan */
+}
+
+.back-button:focus {
+    outline: none;
+}
+
+/* Night mode styling */
+body.night-mode .back-button {
+    background: linear-gradient(45deg, #483D8B, #4B0082);
+    color: #E6E6FA;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+}
+
+body.night-mode .back-button:hover {
+    background: linear-gradient(45deg, #483D8B, #4B0082);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+body.night-mode .back-button:active {
+    background: linear-gradient(45deg, #483D8B, #4B0082);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Animation untuk slide in dari kiri */
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive untuk mobile - sesuaikan dengan tombol sebelumnya */
+@media (max-width: 768px) {
+    .back-button {
+        bottom: 15px;
+        left: 15px;
+        padding: 7px 14px; /* Disamakan */
+        font-size: 0.7rem; /* Disamakan */
+        gap: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-button {
+        bottom: 10px;
+        left: 10px;
+        padding: 6px 12px; /* Disamakan */
+        font-size: 0.65rem; /* Disamakan */
+        gap: 4px;
+    }
+}
+
+/* Tambahkan ke CSS Anda untuk efek tombol aktif yang lebih smooth */
+
+.sound-btn.active {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6) !important;
+    transform: scale(0.95) !important;
+    opacity: 1 !important;
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* Smooth transitions untuk semua sound buttons */
+.sound-btn {
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.sound-btn:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* Specific hover effects berdasarkan warna asli tombol */
+.sound-btn[data-sound="rain"]:hover {
+    box-shadow: 0 5px 15px rgba(116, 185, 255, 0.3);
+}
+
+.sound-btn[data-sound="ocean"]:hover {
+    box-shadow: 0 5px 15px rgba(0, 184, 169, 0.3);
+}
+
+.sound-btn[data-sound="forest"]:hover {
+    box-shadow: 0 5px 15px rgba(85, 163, 255, 0.3);
+}
+
+.sound-btn[data-sound="wind"]:hover {
+    box-shadow: 0 5px 15px rgba(253, 121, 168, 0.3);
+}
+
+.sound-btn[data-sound="stop"]:hover {
+    box-shadow: 0 5px 15px rgba(253, 121, 168, 0.3);
+}

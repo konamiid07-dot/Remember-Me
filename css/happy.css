@@ -1,0 +1,702 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #FFF0F5, #FFCCCB, #FFE4E1, #FFF5EE);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    transition: all 1s ease;
+}
+
+/* Calm Mode */
+body.calm-mode {
+    background: linear-gradient(135deg, #F0F8FF, #E6F3FF, #CCE7FF, #B3DBFF);
+    animation: calmGradient 15s ease infinite;
+}
+
+@keyframes calmGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Background Animation - Slower */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Sakura Petals Container */
+.sakura-petals {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Individual Petal - Reduced quantity */
+.petal {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(ellipse at center, #FFB7C5 0%, #FF91A4 70%, #FF69B4 100%);
+    border-radius: 50% 10px 50% 10px;
+    animation: petalFall linear infinite;
+    transform-origin: center center;
+}
+
+/* Petal Variations - Fewer and gentler */
+.petal:nth-child(2n) {
+    background: radial-gradient(ellipse at center, #FFC0CB 0%, #FFB6C1 70%, #FF91A4 100%);
+    width: 8px;
+    height: 8px;
+    animation-duration: 12s;
+}
+
+.petal:nth-child(3n) {
+    background: radial-gradient(ellipse at center, #FFCCCB 0%, #FFE4E1 70%, #FFC0CB 100%);
+    width: 12px;
+    height: 12px;
+    animation-duration: 15s;
+}
+
+.petal:nth-child(4n) {
+    background: radial-gradient(ellipse at center, #FFF0F5 0%, #FFE4E1 70%, #FFC0CB 100%);
+    width: 6px;
+    height: 6px;
+    animation-duration: 10s;
+}
+
+/* Calm mode petals */
+body.calm-mode .petal {
+    background: radial-gradient(ellipse at center, #B0E0E6 0%, #87CEEB 70%, #4682B4 100%);
+    animation-duration: 20s;
+    opacity: 0.6;
+}
+
+/* Gentler Petal Fall Animation */
+@keyframes petalFall {
+    0% {
+        transform: translateY(-100vh) translateX(0px) rotateZ(0deg);
+        opacity: 0.8;
+    }
+    20% {
+        transform: translateY(-80vh) translateX(15px) rotateZ(72deg);
+        opacity: 1;
+    }
+    40% {
+        transform: translateY(-60vh) translateX(-10px) rotateZ(144deg);
+        opacity: 0.9;
+    }
+    60% {
+        transform: translateY(-40vh) translateX(20px) rotateZ(216deg);
+        opacity: 0.7;
+    }
+    80% {
+        transform: translateY(-20vh) translateX(-15px) rotateZ(288deg);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(100vh) translateX(5px) rotateZ(360deg);
+        opacity: 0;
+    }
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Main Title and Subtitle - Gentler bounce */
+.main-title {
+    font-size: 3rem;
+    color: #FF6B9D;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+    animation: gentleBounce 4s ease-in-out infinite;
+    text-align: center;
+    transition: all 1s ease;
+}
+
+body.calm-mode .main-title {
+    color: #4682B4;
+    animation: calmPulse 6s ease-in-out infinite;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: #4ECDC4;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+    text-align: center;
+    font-style: italic;
+    transition: all 1s ease;
+}
+
+body.calm-mode .subtitle {
+    color: #5F9EA0;
+}
+
+@keyframes gentleBounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+@keyframes calmPulse {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.02); opacity: 1; }
+}
+
+/* Buttons Styling */
+.buttons-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+}
+
+.quote-btn {
+    background: linear-gradient(45deg, #A8E6CF, #88D8C0);
+    color: #2F5D4A;
+}
+
+.quote-btn:hover {
+    background: linear-gradient(45deg, #88D8C0, #6BC7A8);
+}
+
+.celebrate-btn {
+    background: linear-gradient(45deg, #FF9A9E, #FECFEF);
+    color: white;
+}
+
+.celebrate-btn:hover {
+    background: linear-gradient(45deg, #FECFEF, #FFB3BA);
+}
+
+.share-btn {
+    background: linear-gradient(45deg, #FFD93D, #FF8A65);
+    color: white;
+}
+
+.share-btn:hover {
+    background: linear-gradient(45deg, #FF8A65, #FFAB91);
+}
+
+.calm-btn {
+    background: linear-gradient(45deg, #B0E0E6, #87CEEB);
+    color: #2F4F4F;
+    display: none;
+}
+
+.calm-btn.show {
+    display: inline-block;
+}
+
+.calm-btn:hover {
+    background: linear-gradient(45deg, #87CEEB, #ADD8E6);
+}
+
+/* Quote Container Styling */
+.quote-container {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 25px;
+    margin: 20px;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 182, 193, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.quote-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quote-text {
+    font-size: 1.2rem;
+    color: #2C3E50;
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.quote-author {
+    font-size: 0.9rem;
+    color: #7F8C8D;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Joy Activities */
+.joy-activities {
+    display: none;
+    margin: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    animation: fadeInUp 0.6s ease-in;
+}
+
+.joy-activities.show {
+    display: block;
+}
+
+.activity-title {
+    font-size: 1.3rem;
+    color: #FF6B9D;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.activity-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.activity-card:hover {
+    transform: translateY(-5px);
+    border-color: #FF9A9E;
+    box-shadow: 0 8px 20px rgba(255, 154, 158, 0.3);
+}
+
+.activity-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.activity-text {
+    color: #4ECDC4;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Gratitude Zone */
+.gratitude-zone {
+    display: none;
+    margin: 20px;
+    background: linear-gradient(135deg, rgba(255, 240, 245, 0.9), rgba(255, 228, 225, 0.9));
+    border-radius: 20px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    animation: fadeInUp 0.6s ease-in;
+    max-width: 500px;
+}
+
+.gratitude-zone.show {
+    display: block;
+}
+
+.gratitude-title {
+    font-size: 1.2rem;
+    color: #FF6B9D;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.gratitude-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.gratitude-btn {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    border-radius: 15px;
+    padding: 10px 8px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #2C3E50;
+}
+
+.gratitude-btn:hover {
+    background: rgba(255, 154, 158, 0.2);
+    transform: scale(1.05);
+}
+
+.gratitude-btn.selected {
+    background: linear-gradient(45deg, #FF9A9E, #FECFEF);
+    color: white;
+    border-color: #FF6B9D;
+}
+
+.gratitude-message {
+    text-align: center;
+    color: #4ECDC4;
+    font-style: italic;
+    min-height: 20px;
+    font-size: 0.9rem;
+}
+
+/* Confetti Animation - Reduced intensity */
+.confetti {
+    position: fixed;
+    top: -10px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #FF6B9D;
+    animation: confetti-fall linear infinite;
+}
+
+.confetti-piece:nth-child(2n) { background: #4ECDC4; }
+.confetti-piece:nth-child(3n) { background: #FFD93D; }
+.confetti-piece:nth-child(4n) { background: #6BCF7F; }
+.confetti-piece:nth-child(5n) { background: #FF8A65; }
+
+/* Calm mode confetti */
+body.calm-mode .confetti-piece {
+    background: #87CEEB;
+    animation-duration: 4s;
+    opacity: 0.7;
+}
+
+body.calm-mode .confetti-piece:nth-child(2n) { background: #B0E0E6; }
+body.calm-mode .confetti-piece:nth-child(3n) { background: #ADD8E6; }
+
+@keyframes confetti-fall {
+    from {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Heart Effects - Smaller */
+.heart {
+    position: absolute;
+    color: #FF6B9D;
+    font-size: 16px;
+    pointer-events: none;
+    animation: heartFloat 2.5s ease-out forwards;
+}
+
+@keyframes heartFloat {
+    0% {
+        transform: translateY(0) scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-40px) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-80px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Sparkle Effects - Reduced */
+.sparkle {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: #FFD93D;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+    animation: sparkleFloat 1.5s ease-out forwards;
+}
+
+@keyframes sparkleFloat {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.2rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .quote-container {
+        margin: 20px 10px;
+        padding: 20px;
+    }
+    
+    .activities-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .gratitude-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .joy-activities,
+    .gratitude-zone {
+        margin: 15px 10px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.8rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+    
+    .btn {
+        padding: 8px 15px;
+        font-size: 0.8rem;
+    }
+    
+    .quote-text {
+        font-size: 1rem;
+    }
+    
+    .quote-container {
+        padding: 15px;
+        margin: 15px 5px;
+    }
+    
+    .activity-card {
+        padding: 15px;
+    }
+    
+    .activity-icon {
+        font-size: 1.5rem;
+    }
+    
+    .gratitude-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .gratitude-btn {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Back to Home Button - SAMA PERSIS dengan tombol lain (.btn) */
+.back-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    /* Ukuran tetap seperti permintaan */
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    /* Style dari .btn dan .celebrate-btn */
+    background: linear-gradient(45deg, #FF9A9E, #FECFEF);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    border: none;
+    z-index: 1001;
+    /* Transition yang sama dengan .btn - untuk hover yang smooth */
+    transition: all 0.3s ease !important;
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: slideInFromLeft 0.8s ease-out 0.5s forwards;
+}
+
+/* Hover effect SAMA PERSIS dengan .btn dan .celebrate-btn */
+.back-button:hover {
+    background: linear-gradient(45deg, #FECFEF, #FFB3BA) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
+    color: white !important;
+}
+
+/* Active effect SAMA PERSIS dengan .btn */
+.back-button:active {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+}
+
+/* Animation untuk slide in dari kiri */
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Setelah animation selesai, reset transform agar tidak ganggu hover */
+.back-button {
+    animation-fill-mode: forwards;
+}
+
+/* Override semua pseudo-element yang mungkin mengganggu hover */
+.back-button::before,
+.back-button::after {
+    display: none !important;
+}
+
+/* Responsive untuk mobile */
+@media (max-width: 768px) {
+    .back-button {
+        bottom: 15px;
+        left: 15px;
+        padding: 7px 14px;
+        font-size: 0.7rem;
+        gap: 5px;
+        border-radius: 18px;
+    }
+    
+    .back-button:hover {
+        background: linear-gradient(45deg, #FECFEF, #FFB3BA) !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-button {
+        bottom: 10px;
+        left: 10px;
+        padding: 6px 12px;
+        font-size: 0.65rem;
+        gap: 4px;
+        border-radius: 16px;
+    }
+    
+    .back-button:hover {
+        background: linear-gradient(45deg, #FECFEF, #FFB3BA) !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
+    }
+}
+
+/* Calm mode styling - SAMA dengan .calm-btn */
+body.calm-mode .back-button {
+    background: linear-gradient(45deg, #B0E0E6, #87CEEB) !important;
+    color: #2F4F4F !important;
+}
+
+body.calm-mode .back-button:hover {
+    background: linear-gradient(45deg, #87CEEB, #ADD8E6) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
+    color: #2F4F4F !important;
+}
+
+body.calm-mode .back-button:active {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+}

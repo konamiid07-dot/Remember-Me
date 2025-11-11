@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Page - You're Amazing!</title>
+    <link rel="stylesheet" href="css/happy.css">
+</head>
+<body>
+    <!-- Sakura Petals Container -->
+    <div class="sakura-petals" id="sakuraContainer"></div>
+    
+    <div class="container">
+        <h1 class="main-title">Yay! You're Happy 😍</h1>
+        <p class="subtitle">Keep smiling, your happiness means a lot!</p>
+        
+        <div class="buttons-container">
+            <button class="btn quote-btn" id="quoteBtn">💌 Next Happy Quote</button>
+            <button class="btn celebrate-btn" id="celebrateBtn">🎉 Celebrate!</button>
+            <button class="btn share-btn" id="shareBtn">💖 Share Joy</button>
+            <button class="btn calm-btn" id="calmBtn">🌸 Gentle Mode</button>
+        </div>
+
+        <div class="quote-container" id="quoteContainer">
+            <div class="quote-text" id="quoteText">
+                "Happiness is not something ready-made. It comes from your own actions."
+            </div>
+            <div class="quote-author" id="quoteAuthor">- Dalai Lama</div>
+        </div>
+
+        <!-- Joy Activities -->
+        <div class="joy-activities" id="joyActivities">
+            <div class="activity-title">Spread Some Joy!</div>
+            <div class="activities-grid">
+                <div class="activity-card" id="smileCard">
+                    <div class="activity-icon">😊</div>
+                    <div class="activity-text">Send a Smile</div>
+                </div>
+                <div class="activity-card" id="hugCard">
+                    <div class="activity-icon">🤗</div>
+                    <div class="activity-text">Virtual Hug</div>
+                </div>
+                <div class="activity-card" id="danceCard">
+                    <div class="activity-icon">💃</div>
+                    <div class="activity-text">Happy Dance</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gratitude Zone -->
+        <div class="gratitude-zone" id="gratitudeZone">
+            <div class="gratitude-title">What makes you happy today?</div>
+            <div class="gratitude-options">
+                <button class="gratitude-btn" data-gratitude="family">👨‍👩‍👧‍👦 Family</button>
+                <button class="gratitude-btn" data-gratitude="friends">👫 Friends</button>
+                <button class="gratitude-btn" data-gratitude="nature">🌻 Nature</button>
+                <button class="gratitude-btn" data-gratitude="music">🎵 Music</button>
+                <button class="gratitude-btn" data-gratitude="food">🍕 Food</button>
+                <button class="gratitude-btn" data-gratitude="me">😄 Me</button>
+            </div>
+            <div class="gratitude-message" id="gratitudeMessage"></div>
+        </div>
+    </div>
+
+    <!-- Confetti Container -->
+    <div id="confettiContainer"></div>
+
+    <script src="js/happy.js"></script>
+    <!--Link Back to Home-->
+    <a href="index.html" class="back-button">🏠 Back to Home</a>
+</body>
+</html>
